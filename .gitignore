@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+out/
+balls/
+verdicts/
+overlays/
+*.mov
+*.mp4
+.DS_Store

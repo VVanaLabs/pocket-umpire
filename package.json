@@ -1,0 +1,24 @@
+{
+  "name": "pocket-umpire",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Phone at the umpire's POV — AI umpires club cricket. Meta ecosystem only (SAM 3.1 + Muse Spark via api.meta.ai).",
+  "type": "module",
+  "scripts": {
+    "cli": "tsx src/cli.ts",
+    "spike:m1": "tsx src/cli.ts spike-m1",
+    "verdict": "tsx src/cli.ts verdict",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "openai": "^4.104.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
