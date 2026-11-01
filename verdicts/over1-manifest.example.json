@@ -1,0 +1,44 @@
+[
+ {
+  "delivery_id": "O1B1",
+  "contact": "/tmp/balls/c32.jpg",
+  "end": "/tmp/balls/e32.jpg",
+  "audio_snr_db": 10.5,
+  "label_runs": 6
+ },
+ {
+  "delivery_id": "O1B2",
+  "contact": "/tmp/balls/c112.jpg",
+  "end": "/tmp/balls/e112.jpg",
+  "audio_snr_db": 10.3,
+  "label_runs": 2
+ },
+ {
+  "delivery_id": "O1B3",
+  "contact": "/tmp/balls/c180.jpg",
+  "end": "/tmp/balls/e180.jpg",
+  "audio_snr_db": 10.5,
+  "label_runs": 0
+ },
+ {
+  "delivery_id": "O1B4",
+  "contact": "/tmp/balls/c227.jpg",
+  "end": "/tmp/balls/e227.jpg",
+  "audio_snr_db": 17.9,
+  "label_runs": 6
+ },
+ {
+  "delivery_id": "O1B5",
+  "contact": "/tmp/balls/c333.jpg",
+  "end": "/tmp/balls/e333.jpg",
+  "audio_snr_db": 15.7,
+  "label_runs": 0
+ },
+ {
+  "delivery_id": "O1B6",
+  "contact": "/tmp/balls/c406.jpg",
+  "end": "/tmp/balls/e406.jpg",
+  "audio_snr_db": 13.6,
+  "label_runs": 0
+ }
+]

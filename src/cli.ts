@@ -36,6 +36,13 @@ if (cmd === "spike-m1") {
       "The white line is the popping crease; its back edge is the legal boundary. Does any part of the landing foot sit behind the back edge?",
     );
   console.log(JSON.stringify({ foot, wide, decision, confidence: conf, arbiter }, null, 2));
+} else if (cmd === "analyze") {
+  // One-command match analysis: manifest JSON -> verdict JSONL + running score.
+  // manifest: [{delivery_id, contact, end, audio_snr_db?, label_runs?}]
+  const { analyzeMatch } = await import("./analyze.js");
+  const m = process.argv[3];
+  if (!m) throw new Error("usage: pnpm cli analyze <manifest.json> [out.jsonl]");
+  await analyzeMatch(m, process.argv[4] ?? "out/verdicts.jsonl");
 } else if (cmd === "score-demo") {
   // Scripted over: proves illegal-ball counting without footage.
   const script: [string, "legal" | "no_ball" | "wide", number][] = [
@@ -52,5 +59,5 @@ if (cmd === "spike-m1") {
   for (const [id, d, r] of script) s = applyBall(s, id, d, r);
   console.log(`${s.runs}/${s.wickets} (${oversBowled(s)} ov)`, JSON.stringify(s.ballLog));
 } else {
-  console.log("usage: pnpm cli spike-m1 | verdict [--foot=M --cross=X --bat --conf=C] | score-demo");
+  console.log("usage: pnpm cli spike-m1 | verdict [--foot=M --cross=X --bat --conf=C] | score-demo | analyze <manifest.json> [out.jsonl]");
 }
