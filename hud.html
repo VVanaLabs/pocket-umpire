@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket Umpire — Glasses HUD prototype</title>
+<style>
+:root{--green:#7dff8a;--amber:#ffd75d;--red:#ff6b6b;--ink:#f2f7f2}
+*{box-sizing:border-box;margin:0}
+body{background:#050705;color:var(--ink);font-family:-apple-system,Inter,Helvetica,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 16px}
+h1{font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--green)}
+p.note{color:#8aa08a;font-size:13px;margin:8px 0 20px;text-align:center;max-width:640px}
+.lens{position:relative;width:min(960px,94vw);aspect-ratio:16/9;border-radius:180px/120px;overflow:hidden;
+ background:linear-gradient(180deg,#1a2416 0%,#243015 46%,#3a3122 47%,#54432c 100%);
+ box-shadow:0 0 0 10px #111,0 0 0 14px #2c2c2c,0 30px 80px rgba(0,0,0,.7)}
+.lens::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,transparent 55%,rgba(0,0,0,.55) 100%)}
+.stumps{position:absolute;left:50%;bottom:16%;transform:translateX(-50%);display:flex;gap:7px}
+.stumps i{width:7px;height:64px;background:#e8e2d2;border-radius:3px;display:block}
+.crease{position:absolute;left:34%;right:34%;bottom:15%;height:3px;background:rgba(255,255,255,.65)}
+.fielder{position:absolute;width:14px;height:14px;border-radius:50%;background:rgba(240,240,220,.85)}
+.hud{position:absolute;top:7%;right:6%;text-align:right;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+#score{font-size:clamp(28px,4.5vw,44px);font-weight:800;font-variant-numeric:tabular-nums}
+#over{color:var(--green);font-size:14px;letter-spacing:2px}
+.card{position:absolute;left:50%;bottom:9%;transform:translateX(-50%) scale(.9);text-align:center;opacity:0;transition:all .35s cubic-bezier(.2,1.6,.4,1)}
+.card.show{opacity:1;transform:translateX(-50%) scale(1)}
+#verdict{font-size:clamp(44px,8vw,84px);font-weight:900;letter-spacing:1px;text-shadow:0 4px 24px rgba(0,0,0,.85)}
+#vsub{font-size:15px;color:#e8f0e8;text-shadow:0 2px 8px #000}
+.ear{position:absolute;top:7%;left:6%;font-size:13px;color:#cfe8cf;text-shadow:0 2px 8px #000}
+#earLine{color:var(--amber);font-weight:700}
+.pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red);margin-right:7px;animation:p 1.2s infinite}
+@keyframes p{50%{opacity:.25}}
+.controls{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+button{background:var(--green);color:#061206;border:0;font-weight:800;padding:13px 26px;border-radius:999px;font-size:15px;cursor:pointer}
+button.ghost{background:transparent;color:var(--green);border:1px solid var(--green)}
+button.warn{background:transparent;color:var(--amber);border:1px solid var(--amber)}
+#log{margin-top:18px;font-size:13px;color:#8aa08a;font-variant-numeric:tabular-nums;text-align:center;min-height:20px}
+.kbd{border:1px solid #3a4a3a;border-radius:5px;padding:0 6px;color:#cfe0cf}
+</style>
+</head>
+<body>
+<h1>Pocket Umpire · on the lens</h1>
+<p class="note">Interactive prototype of the umpire's-eye experience — the verified Over 1 (14/0).
+Runs as a plain web app, the same surface Meta Ray-Ban Display glasses render.
+Glasses capture via Wearables DAT is integration-ready in code; this page is the display layer.</p>
+
+<div class="lens" id="lens">
+  <div class="ear"><span class="pulse"></span>LIVE · SAM 3.1 + Spark<br>🔊 <span id="earLine">"play"</span></div>
+  <div class="hud"><div id="score">0/0</div><div id="over">OVER 1 · BALL 0</div></div>
+  <div class="stumps"><i></i><i></i><i></i></div><div class="crease"></div>
+  <div class="fielder" style="left:22%;top:38%"></div><div class="fielder" style="left:74%;top:34%"></div>
+  <div class="fielder" style="left:60%;top:52%"></div><div class="fielder" style="left:36%;top:55%"></div>
+  <div class="card" id="card"><div id="verdict">—</div><div id="vsub"></div></div>
+</div>
+
+<div class="controls">
+  <button id="next">▶ Next ball</button>
+  <button class="ghost" id="confirm">✓ Confirm <span class="kbd">C</span></button>
+  <button class="warn" id="correct">✎ Correct <span class="kbd">X</span></button>
+  <button class="ghost" id="reset">↺ Over again</button>
+</div>
+<div id="log">The verdict appears on the lens ~6s after the ball — inside the natural gap. Confirm by voice or tap.</div>
+
+<script>
+// Verified Over 1 (verdicts/over1-v2.jsonl, 6/6 vs hand labels)
+const OVER = [
+ {runs:6, wicket:false, say:"Six. Clean over the rope.", sub:"lofted · field static · boundary"},
+ {runs:2, wicket:false, say:"Two runs.", sub:"both batters sprinting mid-pitch"},
+ {runs:0, wicket:false, say:"Dot ball.", sub:"blocked · stumps intact"},
+ {runs:6, wicket:false, say:"Six again.", sub:"clean strike · batter admires it"},
+ {runs:0, wicket:false, say:"Dot. Beaten.", sub:"no shot offered at the end"},
+ {runs:0, wicket:false, say:"Dot. End of the over.", sub:"left alone · 14 without loss"},
+];
+let i = 0, score = 0;
+const $ = id => document.getElementById(id);
+function show(ball) {
+  const v = ball.wicket ? "OUT!" : ball.runs === 6 ? "SIX!" : ball.runs === 0 ? "DOT" : ball.runs + (ball.runs === 1 ? " RUN" : " RUNS");
+  $("verdict").textContent = v;
+  $("verdict").style.color = ball.wicket ? "var(--red)" : ball.runs === 6 ? "var(--amber)" : ball.runs > 0 ? "var(--green)" : "#dfe8df";
+  $("vsub").textContent = ball.sub;
+  $("earLine").textContent = '"' + ball.say + '"';
+  $("card").classList.add("show");
+  score += ball.runs;
+  $("score").textContent = score + "/0";
+  $("over").textContent = "OVER 1 · BALL " + i;
+  $("log").textContent = "Ball " + i + " called in the ear + on the lens. Waiting on the umpire…";
+}
+$("next").onclick = () => {
+  if (i >= 6) { $("log").textContent = "Over complete — 14/0. Highlights reel is already rendering on the phone."; return; }
+  i++; $("card").classList.remove("show");
+  $("earLine").textContent = '"…"';
+  setTimeout(() => show(OVER[i - 1]), 420); // perception beat; real pipeline ≈6s
+};
+$("confirm").onclick = () => { if (i) $("log").textContent = "✓ Ball " + i + " confirmed by voice. Scorebook locked at " + score + "/0. Next ball when you're ready."; };
+$("correct").onclick = () => { if (i) $("log").textContent = "✎ Correction mode: umpire's word overrides. The fix exports as ground truth — the next call learns from it."; };
+$("reset").onclick = () => { i = 0; score = 0; $("score").textContent = "0/0"; $("over").textContent = "OVER 1 · BALL 0"; $("card").classList.remove("show"); $("log").textContent = "Fresh over. The bowler is at the top of the mark."; };
+addEventListener("keydown", e => {
+  if (e.key === " " || e.key === "Enter") { e.preventDefault(); $("next").click(); }
+  if (e.key === "c" || e.key === "C") $("confirm").click();
+  if (e.key === "x" || e.key === "X") $("correct").click();
+});
+</script>
+</body>
+</html>
