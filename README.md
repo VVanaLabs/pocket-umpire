@@ -21,8 +21,9 @@ Nov 4, 9:00 PM ET). Meta models only, via `https://api.meta.ai/v1`.
 | Over 1, night tape-ball (6 balls) | **6/6** runs + not-bowled vs hand labels, score 14/0 | `verdicts/over1.jsonl`, `docs/labels.csv` |
 | Cheap v2 path rerun | **6/6 again**, ≈6.1s/ball, ≈$0.0029/ball | `verdicts/over1-v2.jsonl` |
 | One-command reproduction | `pnpm cli analyze` regenerates 6/6 + 14/0 | `src/analyze.ts`, `verdicts/over1-manifest.example.json` |
+| Edge-selected stills (no hand-picking) | **6/6 again**, 14/0 — onset+blob preprocessor feeds `analyze` | `spikes/edge-select.py`, `verdicts/over1-edge.jsonl`, `docs/edge.md` |
 | Cross-footage transfer | `wicket` concept tracks 105/105 (behind-bowler) and 68/105 (side-on) on daylight village cricket; Spark grounding ~15px | `docs/validation.md` |
-| Match 2, daylight (12 balls) | Model-proposed 30/1; human video labeling in progress — **not yet an accuracy claim** | `verdicts/match2.json`, `verdicts/match2-labels.csv` |
+| Match 2, daylight (12 balls) | Model-proposed 30/1 — **not an accuracy claim** until labeled | `verdicts/match2.json` |
 | Rules engine | MCC 21.5.2 / 22 geometry + score machine, 19 tests green | `src/rules.ts`, `src/score.ts`, `tests/` |
 
 Honest scope: from a single behind-stumps angle, verdicts are perceptual
@@ -34,6 +35,9 @@ grounding transfer, not verdict accuracy there.
 
 ## How it works
 
+0. **The edge listens first** — on-device audio onset + blob tracking
+   segment each ball and select contact/end stills locally; only those
+   2 JPEGs (~60KB of a ~480KB clip) ever leave the device (`docs/edge.md`).
 1. **SAM 3.1 watches** — image-mode wicket check on the contact still
    (v1 used 105-frame video tracks; image mode is 100× cheaper for stumps
    that never move).
