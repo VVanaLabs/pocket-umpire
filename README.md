@@ -1,45 +1,83 @@
-# Pocket Umpire — working log
+# Pocket Umpire — the phone umpires the game nobody officiates
 
-Phone at the umpire's POV → AI umpires club cricket: no-ball, wide, boundary, snick, scoring, coach analysis — for <$1 a match. Built for the **Meta Global AI Developer Hackathon** (virtual, indie track; submission due **Nov 4, 9:00 PM ET**).
+Most cricket on Earth is played without officials: club, tape-ball, and
+street matches where scoring is memory and disputes settle arguments, not
+matches. Pocket Umpire turns match video into a **ball-by-ball scorebook,
+verdict cards, and shareable highlights** — SAM 3.1 perceives, Muse Spark
+judges, MCC geometry decides where a calibrated angle exists, and a human
+can correct any ball. The corrections become the dataset.
 
-> Living doc: records how we got here and every decision made along the way.
-> Control tower for the build itself: [`PLAN.md`](PLAN.md).
+Built for the **Meta Global AI Developer Hackathon** (indie track, submit
+Nov 4, 9:00 PM ET). Meta models only, via `https://api.meta.ai/v1`.
 
-## Status
+## Does it work? (verified proof)
 
-- [x] Meta API access working (`META_API_KEY` in `~/.zshrc`; `muse-spark-1.3-contributor` set as default pi model)
-- [x] Plan built via subagents: `PLAN.md` + 5 docs in `docs/`
-- [x] M1 access spike (`docs/spikes.md` — sam-3.1 + muse-spark-1.3 OK, smoke 1.1s)
-- [x] Scaffold: TS rules engine + score machine + verdict CLI (19 vitest green, Meta-only)
-- [ ] Footage: none yet — M2–M11 blocked until first clip lands
-- [ ] Day 10: submit (target: early afternoon ET, ≥6h before deadline)
-
-## Decision log (how we got here)
-
-| # | Decision | Rationale / notes |
+| Proof | Result | Evidence |
 |---|---|---|
-| 1 | **Meta models via api.meta.ai** (after a failed detour through OpenCode's provider — key was expired, 401 `api_key_expired`; "signing in again will not renew") | User's Meta dev key works; pi's provider config in `~/.pi/agent/models.json`; lesson learned: pi hides a provider whose env-var key is unset |
-| 2 | **Hackathon project = cricket umpiring app** ("a meta app for tracking a game of cricket… score, analysis, referee/umpire") | Original "Muse OS / Secure VM" framing and a handwired-adjacent brainstorm were **dropped**; subagent brainstorm produced 5 backburner ideas; cricket won on: load-bearing Meta models, natural latency budget, exact/verifiable output |
-| 3 | **20–40s delivery gap = the latency budget.** No real-time needed; umpire POV is already the right camera | This single fact makes the whole thing tractable — deterministic replay, never an improvised live run |
-| 4 | **Scope frozen:** IN = front-foot no-ball (MCC 21.5.2), wide (MCC 22), bowled/boundary scoring, audio snick. OUT (roadmap) = LBW, run-out, caught behind | Solo dev, 10 days, demo must work |
-| 5 | **No glasses — phone-POV only** (user: "dont have glasses") | Ray-Ban Display was $799 for a demo; hackathon judges Meta's *models*, not hardware. `CaptureSource` stays swappable (file ✅ / live stub / glasses-via-Wearables-DAT roadmap). Glasses became a roadmap slide, not a dependency |
-| 6 | **Plan built with subagents** (user: "use subagents to build a plan") | 2 researchers (models/SAM, capture/laws) → 3 area planners (vision, decisions, demo) → 1 master merge = `PLAN.md` + `docs/*`. Project folder created: `~/dev/pocket-umpire` |
-| 7 | **Planner calls:** TypeScript/Node over Python; 48kHz audio (16k clips the 2–10kHz snick band); feature freeze EOD D8, code freeze EOD D9; boundary = FOUR default; ~$0.04/ball, ~$17.50 total vs $25 ceiling | Conflicts resolved in favor of the demo deadline |
-| 8 | **Voice channel added** (user: "players/umpires via audio to resolve boundary or out-of-camera events") | On-device STT, exact keyword grammar, time-gated to VERDICT_PENDING/SHOWN — $0, <1s. Verbs: confirm / override / resolve / undo. Rescues 4-vs-6 + behind-umpire boundaries. Player "howzat" appeals logged, never auto-score. Spike M11 = STT false-positive rate on field chatter; kill-switch = push-to-talk. Demo beat: *"umpire's word is final"* — AI assists, human stays the boss |
+| Over 1, night tape-ball (6 balls) | **6/6** runs + not-bowled vs hand labels, score 14/0 | `verdicts/over1.jsonl`, `docs/labels.csv` |
+| Cheap v2 path rerun | **6/6 again**, ≈6.1s/ball, ≈$0.0029/ball | `verdicts/over1-v2.jsonl` |
+| One-command reproduction | `pnpm cli analyze` regenerates 6/6 + 14/0 | `src/analyze.ts`, `verdicts/over1-manifest.example.json` |
+| Cross-footage transfer | `wicket` concept tracks 105/105 (behind-bowler) and 68/105 (side-on) on daylight village cricket; Spark grounding ~15px | `docs/validation.md` |
+| Match 2, daylight (12 balls) | Model-proposed 30/1; human video labeling in progress — **not yet an accuracy claim** | `verdicts/match2.json`, `verdicts/match2-labels.csv` |
+| Rules engine | MCC 21.5.2 / 22 geometry + score machine, 19 tests green | `src/rules.ts`, `src/score.ts`, `tests/` |
 
-## Documents
+Honest scope: from a single behind-stumps angle, verdicts are perceptual
+(runs, boundary, bowled via stump state). Wide/no-ball geometry is built
+and unit-tested synthetically (`pnpm cli verdict`, `pnpm cli score-demo`)
+and needs a calibrated side angle on real footage — that is the roadmap,
+not a current claim. Village validation proves concept tracking and
+grounding transfer, not verdict accuracy there.
 
-| File | What it holds |
-|---|---|
-| `PLAN.md` | Control tower: merged Day 1–10 timeline, latency budget, spikes M1–M11, cost arithmetic ($25 ceiling), risks |
-| `docs/vision-pipeline.md` | SAM 3.1 prompting, Spark POV→pitch calibration, no-ball/wide geometry |
-| `docs/decisions.md` | Verdict encodings (MCC laws), arbiter pattern, verdict schema, scoring state machine, snick DSP, **voice channel (§3.5)** |
-| `docs/demo-submission.md` | Day-1 shot list, 3:00 demo arc, repo hygiene, submission checklist |
-| `docs/research-models.md` / `docs/research-capture.md` | Sourced API facts, capture rungs, MCC ground truth, Wearables DAT roadmap |
+## How it works
 
-## Key facts pinned
+1. **SAM 3.1 watches** — image-mode wicket check on the contact still
+   (v1 used 105-frame video tracks; image mode is 100× cheaper for stumps
+   that never move).
+2. **Motion finds the ball** — SAM concepts score zero on a 3px ball smear
+   in both lighting conditions, so a $0 frame-differencing blob tracker
+   recovers the delivery line and contact frame (`docs/blob-tracker.md`).
+3. **Muse Spark judges** — contact + end stills + stump state + audio
+   crack SNR → one JSON verdict (runs/boundary/wicket) in ~5s.
+4. **Geometry decides** — where calibrated, MCC laws in code (crease
+   projection, wide planes, 0.03m/0.10m margins) arbitrate; Spark only
+   resolves ambiguity (`src/rules.ts`, `src/geometry.ts`).
+5. **Humans correct** — every verdict lands in an annotation dashboard;
+   corrections export as JSON ground truth for the next run.
 
-- API: `https://api.meta.ai/v1`, openai-responses style; key `META_API_KEY` (env, never committed)
-- Pricing: Spark 1.3 $1.25/$4.25 per M (contributor $0.10/$0.20 dev only); SAM video $0.20/1k frames, image $2.50/1k
-- Critical unknown: model latencies unpublished — **spike M2 (SAM video-mode timing) on Day 1 decides video vs image mode**; kill at >25s/ball
-- Weakest links: snick SNR at ~20m (M5), ball visibility at 20m (M9), foot/crease occlusion (M6)
+## Cost & latency (measured, `docs/cost.md`)
+
+| Path | Per ball | Per 240-ball match | Latency |
+|---|---|---|---|
+| v2 (SAM image + contributor Spark) | ≈$0.0029 | **≈$0.69** | ≈6.1s |
+| v1 (SAM video ×2 + Standard Spark) | ≈$0.047 | ≈$11.30 | ≈10s |
+
+The <$1/match figure uses contributor-model pricing and is stated that
+way; at Standard Spark pricing v2 is ≈$1.86/match. Total hackathon spend
+to date ≈ $0.62.
+
+## Run it
+
+```bash
+export META_API_KEY=...   # env only, never committed
+pnpm install
+npx tsc --noEmit && npx vitest run        # 19 green
+pnpm cli score-demo                        # synthetic illegal-ball over
+pnpm cli verdict --foot=0.06               # geometry verdict path
+pnpm cli analyze <manifest.json> out.jsonl # SAM image + Spark per ball
+```
+
+## Roadmap
+
+- **Second angle** — a side-on phone unlocks front-foot no-ball proof;
+  every camera is already a `CaptureSource` with an angle role
+  (`src/capture.ts`).
+- **Glasses umpire** — umpire-POV capture and mid-pitch audio for snicks.
+- **Auto highlights** — excitement-ranked vertical reel renders at the
+  final ball (`src/highlights.ts`).
+
+## Credits
+
+Demo footage is third-party YouTube video, credited and linked — never
+committed to this repo: night tape-ball match (`R9zhF2u_GFs`), daylight
+match 2 (`zO2ztbJ3bI8`), Sanderstead village cricket (`b4KMnTdVo7c`).
+Planning history: `PLAN.md`, `docs/winning-plan.md`.
