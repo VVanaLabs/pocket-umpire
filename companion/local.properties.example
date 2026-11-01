@@ -1,0 +1,5 @@
+# Copy to local.properties (git-ignored) and fill in from the Wearables Developer Center.
+# Both values are required only outside Developer Mode; in Developer Mode leave them as "0".
+# Never commit real values.
+mwdat_application_id=0
+mwdat_client_token=0

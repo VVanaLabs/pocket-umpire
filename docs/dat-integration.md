@@ -1,6 +1,12 @@
 # Glasses integration — Meta Wearables Device Access Toolkit (DAT)
 
-Status: **integration-ready, not yet run on hardware.** No glasses footage
+The companion-app ↔ pipeline contract (manifest shape, segmentation,
+hive arbitration, privacy rules) is specified in **`docs/dat-bridge-contract.md`**.
+
+Status: **scaffold built (`companion/`), not compiled or run.** The Android
+companion app exists (DAT 1.0.1, Mock Device path included) but has not
+been compiled — no Android SDK on the dev machine — nor run on Mock Device
+or hardware. No glasses footage
 is claimed anywhere in this submission. The display contract is exercised
 by `site/hud.html`; the capture contract is `GlassesSource` in
 `src/capture.ts`. Sources: Meta Wearables Developer Center

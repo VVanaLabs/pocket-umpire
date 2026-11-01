@@ -1,0 +1,11 @@
+# Credentials (Wearables Developer Center) — never commit
+local.properties
+# Gradle / Android build output
+.gradle/
+build/
+app/build/
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/

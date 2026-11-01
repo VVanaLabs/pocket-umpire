@@ -46,7 +46,8 @@ export class FileCaptureSource implements CaptureSource {
  * (onset-detected on the audio channel) and yields them exactly like a
  * file. Session lifecycle, stream config, and the delivery contract are
  * specified in docs/dat-integration.md. Implementation lands with device
- * access; today it yields nothing rather than fabricating clips.
+ * access; today it throws without a registered project rather than
+ * fabricating clips.
  * shortcut: empty stream until DAT project registration + hardware;
  * the HUD prototype (site/hud.html) exercises the display contract.
  */
@@ -69,4 +70,5 @@ export class GlassesSource implements CaptureSource {
 // LivePhoneSource: same interface, transport TBD (roadmap).
 // Sync across devices: clap at record start per device → audio cross-correlation
 // gives clockOffsetS to ~1 frame. shortcut: manual offset entry until auto-sync
-// is built; audio stays the master clock on every device.
+// is built; glasses (when present) are the master clock (offset 0),
+// phones sync to it, otherwise the first phone's audio clock is master.
