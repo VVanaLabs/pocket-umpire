@@ -39,7 +39,34 @@ export class FileCaptureSource implements CaptureSource {
   }
 }
 
-// LivePhoneSource / GlassesSource: same interface, transport TBD (roadmap).
+/**
+ * Meta AI glasses via the Wearables Device Access Toolkit (DAT).
+ * A DAT DeviceSession streams camera frames + mic audio to the companion
+ * phone app; this source segments that stream into per-delivery clips
+ * (onset-detected on the audio channel) and yields them exactly like a
+ * file. Session lifecycle, stream config, and the delivery contract are
+ * specified in docs/dat-integration.md. Implementation lands with device
+ * access; today it yields nothing rather than fabricating clips.
+ * shortcut: empty stream until DAT project registration + hardware;
+ * the HUD prototype (site/hud.html) exercises the display contract.
+ */
+export class GlassesSource implements CaptureSource {
+  readonly kind = "glasses" as const;
+  readonly angle = "umpire-pov" as const;
+  constructor(private datProjectId?: string) {}
+  async *deliveries(): AsyncIterable<DeliveryClip> {
+    if (!this.datProjectId)
+      throw new Error(
+        "GlassesSource: DAT project not registered (see docs/dat-integration.md)",
+      );
+    // DAT session frames arrive here once hardware is paired; each detected
+    // delivery becomes a DeliveryClip with clockOffsetS = 0 (glasses are the
+    // master clock: the umpire's own view defines match time).
+    return;
+  }
+}
+
+// LivePhoneSource: same interface, transport TBD (roadmap).
 // Sync across devices: clap at record start per device → audio cross-correlation
 // gives clockOffsetS to ~1 frame. shortcut: manual offset entry until auto-sync
 // is built; audio stays the master clock on every device.
