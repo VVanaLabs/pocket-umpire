@@ -114,3 +114,15 @@ labeled accuracy with logs in a public repo, read a correct <$1/match cost
 derivation, click balls on a live page, and repeat our thesis back:
 *the phone umpires the game nobody officiates — and every correction makes
 it better.*
+
+## Execution status (2026-11-01, same day)
+- [x] P0.1 proof committed (`verdicts/over1*.jsonl`, `match2.json`, labels template)
+- [x] P0.3 v2 validated 6/6 on all over-1 balls; corrected $0.0029/ball
+- [x] P0.4 one-command `pnpm cli analyze` reproduces 6/6 + 14/0
+- [x] P0.5 README/landing/cost claim hygiene (contributor contingency stated)
+- [x] P1 demo video 179.6s + vertical cut (GitHub release v0.1-demo)
+- [x] P1 public site + dashboard (GitHub Pages), repo public (VVanaLabs)
+- [x] P2 fresh-clone rehearsal: tsc + 19 tests green
+- [ ] P0.2 match-2 human video labels (dashboard live; agent strip-reads in
+      `verdicts/match2-labels.csv` — 4 plausible, 8 need a human video pass)
+- [ ] Nov 4: submit early afternoon ET (form requires the human)
