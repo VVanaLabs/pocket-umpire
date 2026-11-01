@@ -10,6 +10,10 @@ can correct any ball. The corrections become the dataset.
 Built for the **Meta Global AI Developer Hackathon** (indie track, submit
 Nov 4, 9:00 PM ET). Meta models only, via `https://api.meta.ai/v1`.
 
+**Live pitch page:** https://vvanalabs.github.io/pocket-umpire/ ·
+**Demo video (3 min + vertical):** https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo ·
+**Match-2 annotation dashboard:** https://vvanalabs.github.io/pocket-umpire/dashboard.html
+
 ## Does it work? (verified proof)
 
 | Proof | Result | Evidence |
