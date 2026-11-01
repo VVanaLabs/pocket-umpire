@@ -1,6 +1,17 @@
 # Cost ledger (metered, Standard pricing)
 
-## Incurred ≈ $0.55 (as of 2026-11-01)
+## v2 unit economics (2026-11-01) — the <$1/match path
+- SAM **image** on 1 contact still: 0.8s, `images_processed: 1` (~$0.0002
+  at video-frame rates), both stump sets boxed. The 105-frame video track
+  ($0.021) was checking stumps that never move — 100x waste, cut.
+- Spark **contributor** single-image verdict: correct (6, boundary), 4.3s,
+  1289 in + 383 out (~$0.003 at Standard; contributor presumably lower).
+- Blob tracker + audio SNR + geometry: $0 (local).
+- **~$0.003/ball -> 240-ball match ~= $0.72. Under $1.**
+- Contact still doubles as the wicket check (stumps in-frame); end still
+  only on appeal/close calls.
+
+## Incurred ≈ $0.55 (v1 path, as of 2026-11-01)
 | Bucket | Calls | Math | $ |
 |---|---|---|---|
 | SAM video probes (tape-match) | 7 × 105f | 735f × $0.20/1K | 0.147 |
