@@ -1,0 +1,158 @@
+[
+ {
+  "id": "m2b01",
+  "t": 18,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": false,
+   "boundary": false,
+   "one_line": "Dot ball defended stumps intact"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b02",
+  "t": 74.9,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 6,
+   "wicket": false,
+   "boundary": true,
+   "one_line": "Huge hit sails skyward for six"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b03",
+  "t": 80.7,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": true,
+   "boundary": false,
+   "one_line": "Fielder appeals, finger up, batter out"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b04",
+  "t": 103.2,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 6,
+   "wicket": false,
+   "boundary": true,
+   "one_line": "Batter lofts it high for six"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b05",
+  "t": 168.3,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 6,
+   "wicket": false,
+   "boundary": true,
+   "one_line": "Huge shot sails skyward for six"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b06",
+  "t": 173.3,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": false,
+   "boundary": false,
+   "one_line": "Dot ball stumps standing"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b07",
+  "t": 185.3,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 6,
+   "wicket": false,
+   "boundary": true,
+   "one_line": "Clean lofted hit, board stumps standing"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b08",
+  "t": 197.3,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": false,
+   "boundary": false,
+   "one_line": "Ball in flight, play continues"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b09",
+  "t": 334.3,
+  "board_boxes": 1,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": false,
+   "boundary": false,
+   "one_line": "Stumps standing, dot ball played."
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b10",
+  "t": 484.4,
+  "board_boxes": 0,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": false,
+   "boundary": false,
+   "one_line": "Ball lofted high fielders watching"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b11",
+  "t": 502.9,
+  "board_boxes": 0,
+  "verdict": {
+   "decision": "legal",
+   "runs": 0,
+   "wicket": false,
+   "boundary": false,
+   "one_line": "Cramped flick straight to short midwicket dot"
+  },
+  "sam_images": 1
+ },
+ {
+  "id": "m2b12",
+  "t": 548.4,
+  "board_boxes": 0,
+  "verdict": {
+   "decision": "legal",
+   "runs": 6,
+   "wicket": false,
+   "boundary": true,
+   "one_line": "Huge six over midwicket, clean strike"
+  },
+  "sam_images": 1
+ }
+]

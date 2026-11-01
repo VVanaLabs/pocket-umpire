@@ -3,7 +3,10 @@ dist/
 .env
 out/
 balls/
-verdicts/
+# verdict JSON/notes ARE committed proof; only media stays out
+verdicts/*.jpg
+verdicts/*.png
+verdicts/*.mp4
 overlays/
 *.mov
 *.mp4
