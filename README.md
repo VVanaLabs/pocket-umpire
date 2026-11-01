@@ -18,9 +18,9 @@ Nov 4, 9:00 PM ET). Meta models only, via `https://api.meta.ai/v1`.
 
 | Proof | Result | Evidence |
 |---|---|---|
-| Over 1, night tape-ball (6 balls) | **6/6** runs + not-bowled vs hand labels, score 14/0 | `verdicts/over1.jsonl`, `docs/labels.csv` |
+| Over 1, night tape-ball (6 balls) | **6/6** runs + not-bowled vs hand labels, score 14/0 — legal balls only, single behind-stumps angle | `verdicts/over1.jsonl`, `docs/labels.csv` |
 | Cheap v2 path rerun | **6/6 again**, ≈6.1s/ball, ≈$0.0029/ball | `verdicts/over1-v2.jsonl` |
-| One-command reproduction | `pnpm cli analyze` regenerates 6/6 + 14/0 | `src/analyze.ts`, `verdicts/over1-manifest.example.json` |
+| One-command reproduction | `pnpm cli analyze` regenerates 6/6 + 14/0 (needs `META_API_KEY` + stills — see Run it) | `src/analyze.ts`, `verdicts/over1-manifest.example.json` |
 | Edge-selected stills (no hand-picking) | **6/6 again**, 14/0 — onset+blob preprocessor feeds `analyze` | `spikes/edge-select.py`, `verdicts/over1-edge.jsonl`, `docs/edge.md` |
 | Cross-footage transfer | `wicket` concept tracks 105/105 (behind-bowler) and 68/105 (side-on) on daylight village cricket; Spark grounding ~15px | `docs/validation.md` |
 | Match 2, daylight (12 balls) | Model-proposed 30/1 — **not an accuracy claim** until labeled | `verdicts/match2.json` |
@@ -60,7 +60,9 @@ grounding transfer, not verdict accuracy there.
 | v1 (SAM video ×2 + Standard Spark) | ≈$0.047 | ≈$11.30 | ≈10s |
 
 The <$1/match figure uses contributor-model pricing and is stated that
-way; at Standard Spark pricing v2 is ≈$1.86/match. Total hackathon spend
+way; at Standard Spark pricing v2 is ≈$1.86/match. Contributor mode
+trains on submitted content (per Meta's model terms), so it is opt-in,
+never the silent default for user footage. Total hackathon spend
 to date ≈ $0.62.
 
 ## Run it
@@ -73,6 +75,12 @@ pnpm cli score-demo                        # synthetic illegal-ball over
 pnpm cli verdict --foot=0.06               # geometry verdict path
 pnpm cli analyze <manifest.json> out.jsonl # SAM image + Spark per ball
 ```
+
+Reproducing Over 1: `verdicts/over1-manifest.example.json` points at local
+stills (`/tmp/balls/…`) extracted from the credited source footage — media
+is never committed. Regenerate stills with `spikes/edge-select.py` per
+`docs/edge.md`, adjust the paths, then run the `analyze` command above.
+No API key? `score-demo` and `verdict` run fully offline.
 
 ## Roadmap
 

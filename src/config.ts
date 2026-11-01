@@ -1,5 +1,5 @@
 // Meta-ecosystem config. Key comes from env only — never committed.
-// Dev iteration may use the contributor model (cheap); match/demo verdicts stay Standard.
+// The v2 analyze path uses the contributor model by default (cheap, disclosed in docs/cost.md); set SPARK_DEV_MODEL=muse-spark-1.3 for Standard (no content training).
 export const META_BASE_URL = "https://api.meta.ai/v1";
 
 export function metaApiKey(): string {

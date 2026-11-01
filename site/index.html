@@ -119,17 +119,17 @@ th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;lett
 <div class="wrap">
 <header class="hero">
 <div class="kicker">AI umpire for grassroots cricket</div>
-<h1>The AI umpire for the <em>99% of cricket matches</em> with no umpire.</h1>
-<p class="sub">Most cricket is played without officials — no scorebook, no neutral calls, no highlights. Pocket Umpire turns one phone video (and soon Meta AI glasses) into ball-by-ball verdicts, a live score, and shareable moments for <b>under $1 a match</b>.</p>
+<h1>The AI umpire for the <em>cricket matches</em> with no umpire.</h1>
+<p class="sub">Most cricket is played without officials — no scorebook, no neutral calls, no highlights. Pocket Umpire turns one phone video (and soon Meta AI glasses) into ball-by-ball verdicts, a live score, and shareable moments for <b>under $1 a match</b>*.</p>
 <a class="btn" href="#pilot">Join the pilot</a>
 <a class="btn ghost" href="https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo">Watch the 3-min demo</a>
 <a class="btn ghost" href="hud.html">Try the glasses HUD</a>
 <div class="stats">
 <div class="stat"><b>6/6</b><span>verdicts verified</span></div>
-<div class="stat"><b>3×</b><span>independent reproductions</span></div>
+<div class="stat"><b>3×</b><span>pipeline runs · same 6 balls</span></div>
 <div class="stat"><b>$0.0029</b><span>cost per ball</span></div>
 <div class="stat"><b>~6s</b><span>verdict latency</span></div>
-<div class="stat"><b>&lt;$1</b><span>per match compute</span></div>
+<div class="stat"><b>&lt;$1</b><span>per match compute*</span></div>
 </div>
 </header>
 
@@ -138,9 +138,9 @@ th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;lett
 <h2>The problem</h2>
 <p class="lead">Cricket runs on trust at the top and arguments at the bottom.</p>
 <div class="grid3">
-<div class="card"><div class="num">99%</div><p>of matches — club, tape-ball, school, village, diaspora leagues — have no neutral umpire. Players call their own game.</p></div>
+<div class="card"><div class="num">Most</div><p>club, tape-ball, school, village and diaspora matches have no neutral umpire. Players call their own game.</p></div>
 <div class="card"><div class="num">0</div><p>scorebook, ball-by-ball record, or highlights exist after most grassroots matches. The game happens and disappears.</p></div>
-<div class="card"><div class="num">$20+</div><p>is what a human umpire costs per match where you can even find one — more than most grassroots teams can pay.</p></div>
+<div class="card"><div class="num">Scarce</div><p>paid umpires are hard to find at grassroots level — and more than most grassroots teams can pay where they exist.</p></div>
 </div>
 </section>
 
@@ -157,7 +157,7 @@ th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;lett
 <div class="grid3">
 <div class="card"><span class="tag now">Working today</span><h3>📱 Any phone</h3><p>One fixed video in → per-ball verdict JSON, running score, verdict cards on the footage. Verified end-to-end on real matches.</p></div>
 <div class="card"><span class="tag now">Working today</span><h3>🧑‍⚖️ Annotation dashboard</h3><p>Every ball in a timeline with watch-links. Humans can correct any call; corrections export as ground truth.</p></div>
-<div class="card"><span class="tag">Frontier · DAT-ready</span><h3>🕶️ Meta AI glasses</h3><p>The umpire is the camera: verdict on the lens, call in the ear, confirm by voice. Capture plugs into the same interface via Meta's Wearables DAT. <a href="hud.html">Try the HUD prototype →</a></p></div>
+<div class="card"><span class="tag">Frontier · prototype</span><h3>🕶️ Meta AI glasses</h3><p>The umpire is the camera: verdict on the lens, call in the ear, confirm by voice. Capture is mapped to the same interface via Meta's Wearables DAT — HUD prototype today, no glasses footage claimed. <a href="hud.html">Try the HUD prototype →</a></p></div>
 </div>
 </section>
 
@@ -180,7 +180,7 @@ th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;lett
 <tr><td>Second match: daylight, board-for-stumps</td><td class="pend">model-proposed</td><td>12 balls called end-to-end; accuracy not yet claimed</td></tr>
 <tr><td>Village cricket (whites, side-on)</td><td class="ok">concept transfer</td><td>wicket tracks 105/105 &amp; 68/105; grounding ~15px</td></tr>
 <tr><td>Cost &amp; latency</td><td class="ok">measured</td><td>$0.0029/ball · ~6s · full ledger published (contributor pricing, stated)</td></tr>
-<tr><td>Glasses capture</td><td class="pend">integration-ready</td><td>DAT session/streaming mapped to code; HUD prototype live; no glasses footage claimed</td></tr>
+<tr><td>Glasses capture</td><td class="pend">prototype only</td><td>DAT session/streaming mapped to code; HUD prototype live; no glasses footage claimed</td></tr>
 </tbody>
 </table></div>
 <div class="balls">
@@ -207,7 +207,7 @@ th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;lett
 <section>
 <h2>Business model</h2>
 <div class="grid3">
-<div class="card"><h3>Per-match</h3><p><b>$2–5 / match</b> for live scoring + verdicts. Compute costs us under $1; a human umpire costs $20+.</p></div>
+<div class="card"><h3>Per-match</h3><p><b>$2–5 / match</b> for live scoring + verdicts. Compute costs us under $1* at contributor pricing ($1.86 at Standard pricing).</p></div>
 <div class="card"><h3>League season</h3><p><b>Per-team subscription</b>: fixtures, scorebooks, player stats, and season highlights — the record grassroots cricket never had.</p></div>
 <div class="card"><h3>Highlights</h3><p><b>Premium reels</b>: vertical auto-highlights players share. Every share is an ad for the next league.</p></div>
 </div>
@@ -244,7 +244,8 @@ th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;lett
 </section>
 </main>
 
-<div class="foot">Built with SAM 3.1 + Muse Spark via the Meta API · Edge: on-device onset + blob tracking · Glasses layer: Meta Wearables DAT (integration-ready prototype) · Footage: credited YouTube sources, linked only, never committed · Total hackathon spend ≈ $0.62</div>
+<p class="small" style="text-align:center;margin-top:18px">*Under $1/match at Muse Spark contributor pricing (≈$0.69 per 240-ball match, measured). At Standard Spark pricing the same pipeline is ≈$1.86/match. Contributor mode trains on submitted content, so it is opt-in — see <a href="https://github.com/VVanaLabs/pocket-umpire/blob/master/docs/cost.md">cost ledger</a>. Verified verdicts are runs + not-bowled on legal balls from a single behind-stumps angle; wide/no-ball geometry is unit-tested and roadmap, not a footage claim.</p>
+<div class="foot">Built with SAM 3.1 + Muse Spark via the Meta API · Edge: on-device onset + blob tracking · Glasses layer: Meta Wearables DAT (prototype only) · Footage: credited YouTube sources, linked only, never committed · Total hackathon spend ≈ $0.62</div>
 </div>
 </body>
 </html>
