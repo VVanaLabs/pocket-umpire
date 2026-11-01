@@ -8,3 +8,6 @@ overlays/
 *.mov
 *.mp4
 .DS_Store
+
+# third-party match stills dashboard (served, never committed)
+site/dashboard.html
