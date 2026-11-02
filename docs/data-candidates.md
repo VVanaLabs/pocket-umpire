@@ -9,7 +9,31 @@ live scorebug (score + per-ball dots) let us label runs/wicket per ball
 by reading scorebug transitions — no hand-labeling pass needed beyond
 spot-checks, and the labels are the match's own official record.
 
-## 1. Silver Wolves vs Pheonix Firebirds — tennis ball, daylight (RUN FIRST)
+## Street tier (the actual wedge — run these first)
+
+### S1. Musa team vs Yahya team — literal alley cricket
+- https://www.youtube.com/watch?v=qEztR3oRmnY (12:12, street in Pakistan)
+- Verified frames (~4:00, ~7:00): kids playing in a residential alley,
+  a board for stumps, fixed phone behind the stumps at the bowler's end
+  looking down the "pitch". In-video score overlay (`3 OVER = 13 RUNS`)
+  gives innings progression. THIS is the product's home turf.
+- Caveats: house rules (`1 OVER = 1 RUN` overlay suggests shortened
+  format), no creases/markings — runs verdicts from stills only, no
+  geometry claims; labels from overlay + hand-check.
+
+### S2. Pakistan street tournament — night, on a road, scorebug
+- https://www.youtube.com/watch?v=l6vYjuBS7gU (41:26)
+- Verified frame (~10:00): night match on a closed street, crowd on the
+  pavements, broadcast scorebug (`1st INNING 12-0 Overs 2.2`) → scorebug
+  labels apply. Organized but unmistakably street: road surface, street
+  lights, sponsor-board stumps.
+
+### S3. Dubai Tape Ball — night car park (already pick #2 below)
+- Floodlit car park, behind-stumps, 48 balls. Street in everything but name.
+
+## Organized-amateur tier (later — user steer: not the wedge)
+
+## 1. Silver Wolves vs Pheonix Firebirds — tennis ball, daylight
 - https://www.youtube.com/watch?v=F0_ZwSDHWes (21 Mar 2025, The Ballpark)
 - Verified frame (~25:00): fixed behind-bowler angle, full pitch + both
   creases, CricHeroes-style scorebug `PF 15-2 / 1.5` with ball dots
