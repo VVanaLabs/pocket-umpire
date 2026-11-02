@@ -70,3 +70,10 @@ spot-checks, and the labels are the match's own official record.
 - Same honesty bar as our own footage: model output is not accuracy
   until compared against scorebug/human labels, and say so.
 - Precedent: Match 2 (zO2ztbJ3bI8) already follows this pattern.
+
+## Outcomes (2026-11-02)
+- S1 alley: run — handheld camera breaks end-stills (docs/street-s1-spike.md).
+- S3 Dubai: run — 6/6 verdicts, supervisor labels, human pass pending (docs/dubai-s3-spike.md).
+- S4 Silver Wolves: run — onset segmentation misaligned vs scorebug; NOT claimable (docs/sw-s4-spike.md).
+- S5 NCC: blocked — upload audio is digital silence (docs/sw-s4-spike.md).
+- Next segmentation upgrade (from S4): scorebug ball-counter transitions as delivery anchors on scorebug videos.
