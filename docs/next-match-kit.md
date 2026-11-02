@@ -27,8 +27,11 @@ Dashboard: https://vvanalabs.github.io/pocket-umpire/dashboard.html
 For each of the 8 `needs_human_video_pass` balls in
 `verdicts/match2-labels.csv` (m2b01, 03, 04, 08, 09, 10, 11, 12):
 click "▶ watch this ball", then set runs (0–6) + wicket (true/false) in
-the dashboard fields. Export corrections JSON, fill `label_runs` /
-`label_wicket` in the CSV, set status `human_labeled`.
+the dashboard fields (editing any field marks the ball as touched;
+only touched balls export). Export corrections JSON, then run
+`pnpm cli ingest match2-corrections.json` — it fills `label_runs` /
+`label_wicket`, sets status `human_labeled`, and prints model-vs-human
+agreement. Never hand-edit the CSV.
 
 Then report honestly in README proof table:
 `Match 2: X/12 vs human labels (errors: …) — corrections exported`.

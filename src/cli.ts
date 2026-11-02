@@ -58,6 +58,21 @@ if (cmd === "spike-m1") {
   let s = freshScore();
   for (const [id, d, r] of script) s = applyBall(s, id, d, r);
   console.log(`${s.runs}/${s.wickets} (${oversBowled(s)} ov)`, JSON.stringify(s.ballLog));
+} else if (cmd === "ingest") {
+  // Flywheel intake: dashboard corrections JSON -> human labels in the labels CSV.
+  // usage: pnpm cli ingest <corrections.json> [labels.csv]
+  const { readFileSync, writeFileSync } = await import("node:fs");
+  const { ingestCorrections } = await import("./labels.js");
+  const corrPath = process.argv[3];
+  const csvPath = process.argv[4] ?? "verdicts/match2-labels.csv";
+  if (!corrPath) throw new Error("usage: pnpm cli ingest <corrections.json> [labels.csv]");
+  const corrections = JSON.parse(readFileSync(corrPath, "utf8"));
+  const r = ingestCorrections(readFileSync(csvPath, "utf8"), corrections);
+  writeFileSync(csvPath, r.csv);
+  console.log(`human_labeled: ${r.labeled.length} (${r.labeled.join(", ") || "none"})`);
+  console.log(`model agrees: ${r.agree}/${r.labeled.length}`);
+  for (const d of r.disagree) console.log("  disagree:", d);
+  if (r.skipped.length) console.log(`skipped (untouched/unknown): ${r.skipped.join(", ")}`);
 } else {
-  console.log("usage: pnpm cli spike-m1 | verdict [--foot=M --cross=X --bat --conf=C] | score-demo | analyze <manifest.json> [out.jsonl]");
+  console.log("usage: pnpm cli spike-m1 | verdict [--foot=M --cross=X --bat --conf=C] | score-demo | analyze <manifest.json> [out.jsonl] | ingest <corrections.json> [labels.csv]");
 }

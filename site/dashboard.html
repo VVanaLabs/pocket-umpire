@@ -196,8 +196,9 @@ h2{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
 </main>
 <button id="exp">Export corrections JSON</button>
 <script>
+document.querySelectorAll('.card').forEach(c => c.addEventListener('input', () => c.dataset.touched = '1'));
 document.getElementById('exp').onclick = () => {
-  const out = [...document.querySelectorAll('.card')].map(c => {
+  const out = [...document.querySelectorAll('.card')].filter(c => c.dataset.touched).map(c => {
     const o = {id: c.id.slice(2)};
     c.querySelectorAll('.ed').forEach(el => o[el.dataset.f] = el.innerText.trim());
     return o;

@@ -50,7 +50,8 @@ grounding transfer, not verdict accuracy there.
    projection, wide planes, 0.03m/0.10m margins) arbitrate; Spark only
    resolves ambiguity (`src/rules.ts`, `src/geometry.ts`).
 5. **Humans correct** — every verdict lands in an annotation dashboard;
-   corrections export as JSON ground truth for the next run.
+   corrections export as JSON and ingest as ground-truth labels
+   (`pnpm cli ingest corrections.json`) for the next run.
 
 ## Cost & latency (measured, `docs/cost.md`)
 
