@@ -1,0 +1,7 @@
+id,t_s,model_runs,model_wicket,scorebug_read,status
+s4b01,1053.2,0,false,pre/post 1-0/0.1 unchanged,supervisor_scorebug_dot_consistent
+s4b02,1215.4,,false,+3 runs and 2nb dot appear before next onset,misaligned_no_verdict_null
+s4b03,1239.9,0,false,4-1/0.4 -> 5-1/0.5 (+1),misaligned_model_says_0
+s4b04,1299.3,0,false,5-1/1.0 unchanged (between overs),not_a_delivery_window
+s4b05,1319.5,0,false,5-1/1.0 unchanged (between overs),not_a_delivery_window
+s4b06,1358.0,0,false,5-1/1.0 -> 5-2/1.1 (W),model_missed_wicket

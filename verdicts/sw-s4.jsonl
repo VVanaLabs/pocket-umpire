@@ -1,0 +1,6 @@
+{"delivery_id":"s4b01","sam_boxes":1,"sam_s":1.2,"spark_s":6.2,"input_tokens":769,"output_tokens":651,"verdict":{"decision":"legal","runs":0,"wicket":false,"boundary":false,"one_line":"Dot ball, all static, stumps intact, no run."}}
+{"delivery_id":"s4b02","sam_boxes":2,"sam_s":1,"spark_s":22.5,"input_tokens":769,"output_tokens":1024,"verdict":null}
+{"delivery_id":"s4b03","sam_boxes":2,"sam_s":1.1,"spark_s":8.4,"input_tokens":769,"output_tokens":827,"verdict":{"decision":"legal","runs":0,"wicket":false,"boundary":false,"one_line":"Bat contact heard, stumps intact, batters static, dot ball."}}
+{"delivery_id":"s4b04","sam_boxes":2,"sam_s":0.8,"spark_s":5.9,"input_tokens":769,"output_tokens":605,"verdict":{"decision":"legal","runs":0,"wicket":false,"boundary":false,"one_line":"Bat pad block, all players static, no run taken"}}
+{"delivery_id":"s4b05","sam_boxes":1,"sam_s":1.3,"spark_s":9.9,"input_tokens":769,"output_tokens":868,"verdict":{"decision":"legal","runs":0,"wicket":false,"boundary":false,"one_line":"Contact heard stumps intact all static no run"}}
+{"delivery_id":"s4b06","sam_boxes":2,"sam_s":0.5,"spark_s":17.1,"input_tokens":769,"output_tokens":633,"verdict":{"decision":"legal","runs":0,"wicket":false,"boundary":false,"one_line":"Contact heard stumps intact all fielders static no run"}}
