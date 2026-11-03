@@ -23,8 +23,9 @@ Nov 4, 9:00 PM ET). Meta models only, via `https://api.meta.ai/v1`.
 | One-command reproduction | `pnpm cli analyze` regenerates 6/6 + 14/0 (needs `META_API_KEY` + stills — see Run it) | `src/analyze.ts`, `verdicts/over1-manifest.example.json` |
 | Edge-selected stills (no hand-picking) | **6/6 again**, 14/0 — onset+blob preprocessor feeds `analyze` | `spikes/edge-select.py`, `verdicts/over1-edge.jsonl`, `docs/edge.md` |
 | Cross-footage transfer | `wicket` concept tracks 105/105 (behind-bowler) and 68/105 (side-on) on daylight village cricket; Spark grounding ~15px | `docs/validation.md` |
-| Match 2, daylight (12 balls) | Model-proposed 30/1 — **not an accuracy claim** until labeled | `verdicts/match2.json` |
-| Rules engine | MCC 21.5.2 / 22 geometry + score machine, 19 tests green | `src/rules.ts`, `src/score.ts`, `tests/` |
+| Match 2, daylight (12 balls) | **8/10 agreement** vs frame-by-frame labels (2 unclear excluded) — both misses are undercalled quick singles; labels pending owner spot-check | `verdicts/match2.json`, `verdicts/match2-labels.csv` |
+| Dubai, night tape-ball (6 balls, 2nd venue) | 6/6 verdicts (0 nulls); exact on 3 dots, right category on 2 scoring balls, 1 clip excluded — supervisor labels, spot-check pending | `verdicts/dubai-s3.jsonl`, `docs/dubai-s3-spike.md` |
+| Rules engine | MCC 21.5.2 / 22 geometry + score machine, 21 tests green | `src/rules.ts`, `src/score.ts`, `tests/` |
 
 Honest scope: from a single behind-stumps angle, verdicts are perceptual
 (runs, boundary, bowled via stump state). Wide/no-ball geometry is built

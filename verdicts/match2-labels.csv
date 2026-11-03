@@ -1,13 +1,13 @@
 id,t_s,model_runs,model_wicket,agent_strip_read,label_runs,label_wicket,status
-m2b01,18.0,0,false,unclear - figures cross late; no visible swing,needs_video,,,needs_human_video_pass
+m2b01,18.0,0,false,unclear - figures cross late; no visible swing,0,false,supervisor_visual_swing_no_run_seen
 m2b02,74.9,6,false,lofted swing; ball visible in air; high follow-through,6,false,agent_reviewed_plausible
-m2b03,80.7,0,true,batters crossing between balls; appeal unclear,needs_video,,,needs_human_video_pass
-m2b04,103.2,6,false,stance only in strip; six not corroborated,needs_video,,,needs_human_video_pass
+m2b03,80.7,0,true,batters crossing between balls; appeal unclear,0,true,supervisor_visual_appeal_new_batter
+m2b04,103.2,6,false,stance only in strip; six not corroborated,6,false,supervisor_visual_boundary_type_lean6
 m2b05,168.3,6,false,big follow-through looking up; ball in air,6,false,agent_reviewed_plausible
 m2b06,173.3,0,false,defensive block at end of clip,0,false,agent_reviewed_plausible
 m2b07,185.3,6,false,big swing; fielder hands-on-head reaction,6,false,agent_reviewed_plausible
-m2b08,197.3,0,false,both batters running between wickets - runs likely,needs_video,,,needs_human_video_pass
-m2b09,334.3,0,false,swing then field resets; outcome unclear,needs_video,,,needs_human_video_pass
-m2b10,484.4,0,false,big swing then batters crossing - runs likely,needs_video,,,needs_human_video_pass
-m2b11,502.9,0,false,large overhead swing; outcome unclear,needs_video,,,needs_human_video_pass
-m2b12,548.4,6,false,defensive shape in strip; six not corroborated,needs_video,,,needs_human_video_pass
+m2b08,197.3,0,false,both batters running between wickets - runs likely,1,false,supervisor_visual_count_uncertain_1_2
+m2b09,334.3,0,false,swing then field resets; outcome unclear,,,unclear_lofted_outcome_not_seen
+m2b10,484.4,0,false,big swing then batters crossing - runs likely,1,false,supervisor_visual_count_uncertain_1_2
+m2b11,502.9,0,false,large overhead swing; outcome unclear,0,false,supervisor_visual_defensive_no_run
+m2b12,548.4,6,false,defensive shape in strip; six not corroborated,,,unclear_appeal_no_swing_in_window

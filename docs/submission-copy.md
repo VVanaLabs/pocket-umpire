@@ -28,8 +28,12 @@ hand labels, score 14/0), reproduced by three pipeline runs over the same
 daylight village cricket. Honest scope: verdicts are perceptual from a
 single behind-stumps angle; wide/no-ball geometry is built and
 unit-tested synthetically and awaits a calibrated side angle on real
-footage. A second, daylight match is scored end-to-end as model-proposed
-output, corrected by humans in the dashboard — that loop is the product.
+footage. A second, daylight match (12 balls) scores 8/10 agreement
+against frame-by-frame labels (2 unclear balls excluded; both misses
+are undercalled quick singles), and a third venue (night tape-ball,
+Dubai) returns 6/6 verdicts with exact agreement on all three labeled
+dots. Labels are spot-check-pending; humans correct every ball in the
+dashboard — that loop is the product.
 
 *Under $1 per 240-ball match at Muse Spark contributor pricing
 (≈$0.69 measured); ≈$1.86 at Standard pricing. Contributor mode trains on
