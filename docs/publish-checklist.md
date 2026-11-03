@@ -14,7 +14,7 @@ so run this in the morning, submit early afternoon ET (deadline 9 PM ET).
   - https://vvanalabs.github.io/pocket-umpire/dashboard.html (balls tappable, fields editable)
   - https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo (both mp4s download)
   - Repo README renders; every link in it resolves
-- [ ] Fresh-clone rehearsal: `git clone` (logged-out URL) → `pnpm install` → `npx tsc --noEmit && npx vitest run` (19 green) → `pnpm cli score-demo` (offline)
+- [ ] Fresh-clone rehearsal: `git clone` (logged-out URL) → `pnpm install` → `npx tsc --noEmit && npx vitest run` (21 green) → `pnpm cli score-demo` (offline)
 - [ ] Secrets scan: `git log --all -p | grep -iE 'meta_api_key=[^.]|sk-[a-z0-9]{20}'` → empty (placeholder `your_key_here` in .env.example is fine)
 - [ ] Video: plays end-to-end, captions legible on mute, end card shows pricing caveat (see docs/submission-copy.md)
 
