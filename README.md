@@ -11,8 +11,7 @@ Built for the **Meta Global AI Developer Hackathon** (indie track, submit
 Nov 4, 9:00 PM ET). Meta models only, via `https://api.meta.ai/v1`.
 
 **Live pitch page:** https://vvanalabs.github.io/pocket-umpire/ ·
-**Demo video (3 min + vertical):** https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo ·
-**Match-2 annotation dashboard:** https://vvanalabs.github.io/pocket-umpire/dashboard.html
+**Demo video (3 min + vertical):** https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo
 
 ## Does it work? (verified proof)
 
@@ -50,9 +49,9 @@ grounding transfer, not verdict accuracy there.
 4. **Geometry decides** — where calibrated, MCC laws in code (crease
    projection, wide planes, 0.03m/0.10m margins) arbitrate; Spark only
    resolves ambiguity (`src/rules.ts`, `src/geometry.ts`).
-5. **Humans correct** — every verdict lands in an annotation dashboard;
-   corrections export as JSON and ingest as ground-truth labels
-   (`pnpm cli ingest corrections.json`) for the next run.
+5. **Humans correct** — corrections export as JSON and ingest as
+   ground-truth labels (`pnpm cli ingest corrections.json`) for the
+   next run.
 
 ## Cost & latency (measured, `docs/cost.md`)
 

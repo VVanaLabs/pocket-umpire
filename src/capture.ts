@@ -48,8 +48,7 @@ export class FileCaptureSource implements CaptureSource {
  * specified in docs/dat-integration.md. Implementation lands with device
  * access; today it throws without a registered project rather than
  * fabricating clips.
- * shortcut: empty stream until DAT project registration + hardware;
- * the HUD prototype (site/hud.html) exercises the display contract.
+ * shortcut: empty stream until DAT project registration + hardware.
  */
 export class GlassesSource implements CaptureSource {
   readonly kind = "glasses" as const;

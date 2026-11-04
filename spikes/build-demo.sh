@@ -3,7 +3,7 @@
 # blob-track overlay render, normalized segments, concat. All assets /tmp.
 set -e
 mkdir -p /tmp/demo
-cd /Users/ngs/dev/pocket-umpire
+cd "$(cd "$(dirname "$0")/.." && pwd)"
 /tmp/venv/bin/python - <<'EOF'
 import json
 from PIL import Image, ImageDraw, ImageFont
@@ -56,11 +56,6 @@ print("track frames ok")
 EOF
 ffmpeg -y -v error -framerate 15 -i /tmp/demo/trk_%03d.png -i /tmp/blob/cap_x.png -filter_complex "[0:v][1:v]overlay=0:0:format=auto" -c:v libx264 -pix_fmt yuv420p -an /tmp/demo/seg_track.mp4 2>/dev/null || \
 ffmpeg -y -v error -framerate 15 -i /tmp/demo/trk_%03d.png -c:v libx264 -pix_fmt yuv420p -an /tmp/demo/seg_track.mp4
-# dashboard screenshot via headless chrome if available, else skip
-SHOT=/tmp/demo/dash.png
-if [ -x "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]; then
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --screenshot=$SHOT --window-size=1280,900 "file:///Users/ngs/dev/pocket-umpire/site/dashboard.html" >/dev/null 2>&1 || true
-fi
 norm () { # in, cap-or-card, dur, out
   if [ "$2" != "none" ]; then OV="-i $2 -filter_complex [0:v][1:v]overlay=0:0:format=auto,scale=1280:720,fps=15"; else OV="-vf scale=1280:720,fps=15"; fi
   ffmpeg -y -v error -i "$1" $OV -t "$3" -c:v libx264 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 "$4"

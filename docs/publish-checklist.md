@@ -11,7 +11,6 @@ so run this in the morning, submit early afternoon ET (deadline 9 PM ET).
 - [ ] Enable Pages on `gh-pages` branch (root): `gh api -X POST repos/VVanaLabs/pocket-umpire/pages -f 'source[branch]=gh-pages' -f 'source[path]=/'` (or Settings → Pages)
 - [ ] Logged-out check (private window, no GitHub login):
   - https://vvanalabs.github.io/pocket-umpire/
-  - https://vvanalabs.github.io/pocket-umpire/dashboard.html (balls tappable, fields editable)
   - https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo (both mp4s download)
   - Repo README renders; every link in it resolves
 - [ ] Fresh-clone rehearsal: `git clone` (logged-out URL) → `pnpm install` → `npx tsc --noEmit && npx vitest run` (21 green) → `pnpm cli score-demo` (offline)

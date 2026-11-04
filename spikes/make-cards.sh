@@ -1,7 +1,7 @@
 #!/bin/bash
 # Verdict cards: score bug throughout + verdict stamp from contact frame.
 set -e
-cd /Users/ngs/dev/pocket-umpire
+cd "$(cd "$(dirname "$0")/.." && pwd)"
 /tmp/venv/bin/python - <<'EOF'
 from PIL import Image, ImageDraw, ImageFont
 FB = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"

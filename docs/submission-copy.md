@@ -46,7 +46,6 @@ glasses umpire POV, auto highlights.
 - **Repo:** https://github.com/VVanaLabs/pocket-umpire
 - **Demo video:** https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo
 - **Live pitch:** https://vvanalabs.github.io/pocket-umpire/
-- **Dashboard:** https://vvanalabs.github.io/pocket-umpire/dashboard.html
 
 ## Video end-card line (if re-rendered)
 

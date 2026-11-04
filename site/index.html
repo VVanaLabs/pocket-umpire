@@ -144,7 +144,6 @@ h1{font-size:clamp(44px,7.4vw,76px);letter-spacing:-.035em}
 <p class="sub">Most cricket is played without officials — no scorebook, no neutral calls, no highlights. Pocket Umpire turns one phone video (and soon Meta AI glasses) into ball-by-ball verdicts, a live score, and shareable moments for <b>under $1 a match</b>*.</p>
 <a class="btn" href="#pilot">Join the pilot</a>
 <a class="btn ghost" href="https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo">Watch the 3-min demo</a>
-<a class="btn ghost" href="hud.html">Try the glasses HUD</a>
 <div class="bug" role="img" aria-label="Verified over scorebug: 14 for 0 after one over. Balls: six, two runs, dot, six, dot, dot.">
 <div class="bug-top"><span class="bug-team">GRASSROOTS XI</span><span class="bug-score">14/0</span><span class="bug-ov">(1.0 ov)</span><span class="bug-live">● VERIFIED OVER</span></div>
 <div class="bug-dots"><span class="d six">6</span><span class="d runs">2</span><span class="d">0</span><span class="d six">6</span><span class="d">0</span><span class="d">0</span><span class="bug-meta">BALL 4&nbsp;·&nbsp;<b>SIX!</b>&nbsp;·&nbsp;$0.0029&nbsp;·&nbsp;6.1s</span></div>
@@ -181,8 +180,8 @@ h1{font-size:clamp(44px,7.4vw,76px);letter-spacing:-.035em}
 </div>
 <div class="grid3">
 <div class="card"><span class="tag now">Working today</span><h3>Any phone</h3><p>One fixed video in → per-ball verdict JSON, running score, verdict cards on the footage. Verified end-to-end on real matches.</p></div>
-<div class="card"><span class="tag now">Working today</span><h3>Annotation dashboard</h3><p>Every ball in a timeline with watch-links. Humans can correct any call; corrections export as ground truth.</p></div>
-<div class="card"><span class="tag">Frontier · prototype</span><h3>Meta AI glasses</h3><p>The umpire is the camera: verdict on the lens, call in the ear, confirm by voice. Capture is mapped to the same interface via Meta's Wearables DAT — HUD prototype today, no glasses footage claimed. <a href="hud.html">Try the HUD prototype →</a></p></div>
+<div class="card"><span class="tag now">Working today</span><h3>Human correction loop</h3><p>Humans can correct any call; corrections ingest as ground-truth labels (<code>pnpm cli ingest</code>) for the next run.</p></div>
+<div class="card"><span class="tag">Frontier · prototype</span><h3>Meta AI glasses</h3><p>The umpire is the camera: verdict on the lens, call in the ear, confirm by voice. Capture is mapped to the same interface via Meta's Wearables DAT companion scaffold — no glasses footage claimed.</p></div>
 </div>
 </section>
 
@@ -206,7 +205,7 @@ h1{font-size:clamp(44px,7.4vw,76px);letter-spacing:-.035em}
 <tr><td>Third venue: Dubai night tape-ball</td><td class="pend">transfer run</td><td>6/6 verdicts, 0 nulls; exact on 3 dots, right category on 2 scoring balls; 1 clip excluded</td></tr>
 <tr><td>Village cricket (whites, side-on)</td><td class="ok">concept transfer</td><td>wicket tracks 105/105 &amp; 68/105; grounding ~15px</td></tr>
 <tr><td>Cost &amp; latency</td><td class="ok">measured</td><td>$0.0029/ball · ~6s · full ledger published (contributor pricing, stated)</td></tr>
-<tr><td>Glasses capture</td><td class="pend">prototype only</td><td>DAT session/streaming mapped to code; HUD prototype live; no glasses footage claimed</td></tr>
+<tr><td>Glasses capture</td><td class="pend">prototype only</td><td>DAT session/streaming mapped to code in a companion scaffold; no glasses footage claimed</td></tr>
 </tbody>
 </table></div>
 <div class="balls">
@@ -247,7 +246,7 @@ h1{font-size:clamp(44px,7.4vw,76px);letter-spacing:-.035em}
 <div class="step">Correction becomes labeled data</div><div class="arrow">→</div>
 <div class="step">Next call is better</div><div class="arrow">↺</div>
 </div>
-<p class="small" style="margin-top:14px">Grassroots cricket has no labeled dataset — it has never been filmed systematically. Every corrected ball in our dashboard is a training example nobody else has, across exactly the conditions (night tape-ball, village whites, board stumps) that broadcast-trained models have never seen.</p>
+<p class="small" style="margin-top:14px">Grassroots cricket has no labeled dataset — it has never been filmed systematically. Every corrected ball is a training example nobody else has, across exactly the conditions (night tape-ball, village whites, board stumps) that broadcast-trained models have never seen.</p>
 </section>
 
 <section>
@@ -264,7 +263,7 @@ h1{font-size:clamp(44px,7.4vw,76px);letter-spacing:-.035em}
 <h2 style="color:var(--ink);letter-spacing:0;text-transform:none;font-size:28px;letter-spacing:-.01em">Bring Pocket Umpire to your league</h2>
 <p style="color:var(--dim);max-width:560px;margin:10px auto 22px">We're onboarding pilot leagues: send us one filmed match, get a full ball-by-ball scorebook, verdict cards, and a highlights reel back. Free during the pilot.</p>
 <a class="btn" href="https://github.com/VVanaLabs/pocket-umpire">Get the code &amp; pilot details</a>
-<a class="btn ghost" href="dashboard.html">See a live scorebook</a>
+<a class="btn ghost" href="https://github.com/VVanaLabs/pocket-umpire/tree/master/verdicts">See the verified scorebooks</a>
 <p class="small" style="margin-top:16px">Solo founder · built in public · every claim on this page links to committed evidence</p>
 </div>
 </section>
