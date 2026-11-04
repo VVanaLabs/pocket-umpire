@@ -18,8 +18,8 @@ How it works: an on-device edge layer (audio onset + motion-blob tracking,
 $0) segments each ball and selects contact/end stills — only ~60KB of
 stills ever leave the device. SAM 3.1 checks the stumps, Muse Spark judges
 the outcome from two stills + audio-crack SNR, MCC Laws geometry decides
-where a calibrated angle exists, and a human can correct any ball in the
-annotation dashboard. The corrections become the dataset.
+where a calibrated angle exists, and a human can correct any ball.
+The corrections become the dataset.
 
 Verified proof: 6/6 on a real night tape-ball over (runs + not-bowled vs
 hand labels, score 14/0), reproduced by three pipeline runs over the same
@@ -32,8 +32,8 @@ footage. A second, daylight match (12 balls) scores 8/10 agreement
 against frame-by-frame labels (2 unclear balls excluded; both misses
 are undercalled quick singles), and a third venue (night tape-ball,
 Dubai) returns 6/6 verdicts with exact agreement on all three labeled
-dots. Labels are spot-check-pending; humans correct every ball in the
-dashboard — that loop is the product.
+dots. Labels are spot-check-pending; humans correct balls via a
+corrections-ingest loop (`pnpm cli ingest`) — that loop is the product.
 
 *Under $1 per 240-ball match at Muse Spark contributor pricing
 (≈$0.69 measured); ≈$1.86 at Standard pricing. Contributor mode trains on
