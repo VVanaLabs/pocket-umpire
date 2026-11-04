@@ -44,7 +44,7 @@ Roadmap: second (side-on) angle for front-foot no-ball proof, Meta AI
 glasses umpire POV, auto highlights.
 
 - **Repo:** https://github.com/VVanaLabs/pocket-umpire
-- **Demo video (lead with pocket-umpire-demo-v2.mp4, 54s; vertical + 3-min cuts also attached):** https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo
+- **Demo video (lead with pocket-umpire-demo-v3.mp4, 54s; vertical + 3-min cuts also attached):** https://github.com/VVanaLabs/pocket-umpire/releases/tag/v0.1-demo
 - **Live pitch:** https://vvanalabs.github.io/pocket-umpire/
 
 ## Video end-card line (if re-rendered)
